@@ -4,7 +4,15 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
-## 🚀 What's New in v1.7.0
+## 🚀 What's New in v1.7.1
+
+### ✅ Patch Release Highlights
+- **Reliable Desktop Client IP Display**: The assigned tunnel IP is now delivered through a structured client status event and shown consistently after connection.
+- **CIDR-Aware IPAM**: Allocation validates IPv4 client CIDRs, reserves network/gateway/broadcast addresses, validates sticky leases, and uses collision-safe round-robin allocation.
+- **Refreshed Sign-in Success Page**: Desktop Client and CLI callbacks now render the new access-summary experience at both `/signin-success` and `/signin-success.html`.
+- **Safe Platform Version Sync**: The version synchronizer preserves release-note metadata when updating all component versions.
+
+### 📦 Included v1.7.0 Platform Capabilities
 
 ### 🖥️ Desktop Client (macOS & Windows)
 - **Split-Horizon DNS**: Dynamic per-session internal DNS resolution (`*.corp.internal`, `*.dev.local`) through tunnel servers without leaking public queries.
@@ -38,7 +46,7 @@ All binaries and desktop installers are automatically compiled and published to 
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
 | **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | High-performance wire-speed data plane daemon with encrypted TUN routing for on-premise/VPC gateways. |
-| **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.0` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
+| **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.1` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
 
 ---
 
@@ -46,16 +54,16 @@ All binaries and desktop installers are automatically compiled and published to 
 
 | Component | Version | Build Status |
 | :--- | :--- | :--- |
-| **Management API** | `v1.7.0` | ✅ Stable |
-| **Authentication API** | `v1.7.0` | ✅ Stable |
-| **Gateway Control Plane** | `v1.7.0` | ✅ Stable |
-| **Edge Gateway Data Plane** | `v1.7.0` | ✅ Stable |
-| **Console** | `v1.7.0` | ✅ Stable |
-| **Backoffice** | `v1.7.0` | ✅ Stable |
-| **Web Catalog** | `v1.7.0` | ✅ Stable |
-| **Landing Page** | `v1.7.0` | ✅ Stable |
-| **ZTNA CLI** | `v1.7.0` | ✅ Stable |
-| **ZTNA Desktop Client** | `v1.7.0` | ✅ Stable |
+| **Management API** | `v1.7.1` | ✅ Stable |
+| **Authentication API** | `v1.7.1` | ✅ Stable |
+| **Gateway Control Plane** | `v1.7.1` | ✅ Stable |
+| **Edge Gateway Data Plane** | `v1.7.1` | ✅ Stable |
+| **Console** | `v1.7.1` | ✅ Stable |
+| **Backoffice** | `v1.7.1` | ✅ Stable |
+| **Web Catalog** | `v1.7.1` | ✅ Stable |
+| **Landing Page** | `v1.7.1` | ✅ Stable |
+| **ZTNA CLI** | `v1.7.1` | ✅ Stable |
+| **ZTNA Desktop Client** | `v1.7.1` | ✅ Stable |
 
 ---
 
