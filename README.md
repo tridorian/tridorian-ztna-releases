@@ -4,41 +4,25 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
-## 🚀 Recent Releases
+## 🚀 What's New in v1.7.0
 
-### [v1.7.0] - 2026-08-27
-This major milestone release introduces High-Availability Gateway Clusters, Advanced Dynamic Policy Engine, Granular User & Logical Groups, Comprehensive Security Hardening, Automated 100% Cloud Build Client Packaging, and Unified Billing Life Cycle Management.
+### 🖥️ Desktop Client (macOS & Windows)
+- **Split-Horizon DNS**: Dynamic per-session internal DNS resolution (`*.corp.internal`, `*.dev.local`) through tunnel servers without leaking public queries.
+- **Device Posture Inspection**: Real-time evaluation of endpoint health (OS version, disk encryption with FileVault/BitLocker, firewall state).
+- **Universal macOS DMG & Windows ARM64**: Native `Tridorian-ZTNA.dmg` (Apple Silicon + Intel) and native Windows 11 ARM64 (Snapdragon Copilot+ PCs) & x64 installers with bundled Wintun drivers.
+- **Auto-Reconnect & Dynamic Updates**: Resilient connection roaming and in-app notifications for one-click updates.
 
-#### ✨ Key Features & Enhancements
+### 💻 ZTNA CLI (Linux & macOS)
+- **Headless Non-Interactive Auth**: Automated login via API tokens (`--token=...`) for servers, containers, and CI/CD pipelines.
+- **Multi-Architecture Static Binaries**: Pre-compiled single standalone executables for Linux `amd64`/`arm64` and macOS `amd64`/`arm64`.
+- **Scriptable JSON Output**: Structured JSON formatting (`--json`) across `status`, `devices`, and `peers` commands.
+- **Embedded WireGuard Engine**: Ultra-low memory (<15MB RAM) with full wire-speed ChaCha20-Poly1305 encryption.
 
-- **🛡️ Gateway & High-Availability Clusters**:
-  - **High-Availability (HA) Clustering**: Active-active cluster failover, dynamic health probing, and automatic traffic re-routing across multi-node edge gateways.
-  - **Token-Based Gateway Enrollment**: Secure, zero-touch provisioning for edge gateways with rotating node tokens and hardware identity verification.
-  - **WireGuard & TUN Data Plane**: High-performance multi-threaded ChaCha20-Poly1305 encryption delivering wire-speed throughput on Linux `amd64` and `arm64`.
-  - **Zero-Downtime Rolling Updates**: Smooth gateway control-plane reconnections without interrupting active user tunnels.
-
-- **🚦 Policy Engine & Granular Access Control**:
-  - **User Groups & Logical Resource Groups**: Dynamic assignment of users and servers into logical tiers for fine-grained Zero Trust policy enforcement.
-  - **Context-Aware Rule Evaluation**: Real-time inspection of IP CIDR, domain names, protocols, and port ranges per user identity and device posture.
-  - **Split-Horizon DNS (Split DNS)**: Seamless resolution of internal corporate domains (`*.corp.internal`, `*.dev.local`) through internal DNS servers across the tunnel.
-
-- **🔒 Platform Security & Compliance Hardening**:
-  - **Tamper-Resistant Device Posture**: Continuous compliance checks (disk encryption, firewall status, OS version) gating tunnel access.
-  - **Instant Session Revocation**: Immediate termination of compromised user sessions and real-time JWT invalidation.
-  - **Immutable Audit Trail**: Structured `audit_events` and `security_events` logging for PDPA, ISO 27001, and SOC 2 compliance.
-
-- **🌐 Clientless Web Access Proxy**:
-  - **Browser-Based Application Catalog**: Zero-install access to internal web portals, WebSSH terminals, and HTML5 WebRDP remote desktops.
-  - **Automated Let's Encrypt TLS**: Automatic certificate provisioning and renewal via ACME DNS challenges.
-
-- **💳 Billing & Subscription Lifecycle**:
-  - **7-Day Grace Period Architecture**: Automated transition pipeline (`trial_active` ➔ `trial_expired` ➔ `paid`) ensuring uninterrupted service during renewals.
-  - **SKU Discounts & Dispute Resolution**: Dynamic discount codes, invoice adjustments, and tenant billing state management.
-
-- **📦 100% Unified Cloud Build Release Pipeline**:
-  - **macOS Universal DMG (`Tridorian-ZTNA.dmg`)**: Native Apple UDZO disk image with custom drag-to-Applications Finder window layout, volume icons, and self-elevation permissions.
-  - **Windows Installers (`.exe`)**: Executable NSIS installers with bundled signed Wintun 0.14.1 drivers for both `AMD64` and `ARM64` (Snapdragon Copilot+ PCs).
-  - **Standalone Gateway & CLI Binaries**: Pre-compiled static binaries for Linux and Darwin.
+### 🛡️ ZTNA Gateway (Linux Data Plane)
+- **Remote Software Update Manager**: Live update lifecycle (`idle` ➔ `downloading` ➔ `updating` ➔ `updated`) with remote update triggers from Console.
+- **High-Availability (HA) Clustering**: Active/Standby multi-node clustering with sub-second health checks and failover.
+- **Automated Let's Encrypt TLS**: Automated certificate issuance and ACME DNS challenge validation for Web Proxy internal domains.
+- **Token-Based Zero-Touch Enrollment**: Fast node provisioning with rotating tokens and hardware fingerprint verification.
 
 ---
 
