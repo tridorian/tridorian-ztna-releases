@@ -16,7 +16,7 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 - **Headless Non-Interactive Auth**: Automated login via API tokens (`--token=...`) for servers, containers, and CI/CD pipelines.
 - **Multi-Architecture Static Binaries**: Pre-compiled single standalone executables for Linux `amd64`/`arm64` and macOS `amd64`/`arm64`.
 - **Scriptable JSON Output**: Structured JSON formatting (`--json`) across `status`, `devices`, and `peers` commands.
-- **Embedded WireGuard Engine**: Ultra-low memory (<15MB RAM) with full wire-speed ChaCha20-Poly1305 encryption.
+- **Embedded Secure Tunnel Engine**: Ultra-low memory (<15MB RAM) with full wire-speed end-to-end encryption.
 
 ### 🛡️ ZTNA Gateway (Linux Data Plane)
 - **Remote Software Update Manager**: Live update lifecycle (`idle` ➔ `downloading` ➔ `updating` ➔ `updated`) with remote update triggers from Console.
@@ -37,7 +37,7 @@ All binaries and desktop installers are automatically compiled and published to 
 | **Windows Desktop Client** | Windows `arm64` (Snapdragon) | `ztna-client-windows-arm64-installer.exe` | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM devices. |
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
-| **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | High-performance wire-speed data plane daemon with WireGuard & TUN routing for on-premise/VPC gateways. |
+| **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | High-performance wire-speed data plane daemon with encrypted TUN routing for on-premise/VPC gateways. |
 | **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.0` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
 
 ---
