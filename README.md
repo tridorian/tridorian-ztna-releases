@@ -4,33 +4,18 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
-## 🚀 What's New in v1.7.1
+## 🚀 What's New in v1.7.3
 
-### ✅ Patch Release Highlights
-- **Reliable Desktop Client IP Display**: The assigned tunnel IP is now delivered through a structured client status event and shown consistently after connection.
-- **CIDR-Aware IPAM**: Allocation validates IPv4 client CIDRs, reserves network/gateway/broadcast addresses, validates sticky leases, and uses collision-safe round-robin allocation.
-- **Refreshed Sign-in Success Page**: Desktop Client and CLI callbacks now render the new access-summary experience at both `/signin-success` and `/signin-success.html`.
-- **Safe Platform Version Sync**: The version synchronizer preserves release-note metadata when updating all component versions.
-
-### 📦 Included v1.7.0 Platform Capabilities
-
-### 🖥️ Desktop Client (macOS & Windows)
-- **Split-Horizon DNS**: Dynamic per-session internal DNS resolution (`*.corp.internal`, `*.dev.local`) through tunnel servers without leaking public queries.
-- **Device Posture Inspection**: Real-time evaluation of endpoint health (OS version, disk encryption with FileVault/BitLocker, firewall state).
-- **Universal macOS DMG & Windows ARM64**: Native `Tridorian-ZTNA.dmg` (Apple Silicon + Intel) and native Windows 11 ARM64 (Snapdragon Copilot+ PCs) & x64 installers with bundled Wintun drivers.
-- **Auto-Reconnect & Dynamic Updates**: Resilient connection roaming and in-app notifications for one-click updates.
-
-### 💻 ZTNA CLI (Linux & macOS)
-- **Headless Non-Interactive Auth**: Automated login via API tokens (`--token=...`) for servers, containers, and CI/CD pipelines.
-- **Multi-Architecture Static Binaries**: Pre-compiled single standalone executables for Linux `amd64`/`arm64` and macOS `amd64`/`arm64`.
-- **Scriptable JSON Output**: Structured JSON formatting (`--json`) across `status`, `devices`, and `peers` commands.
-- **Embedded Secure Tunnel Engine**: Ultra-low memory (<15MB RAM) with full wire-speed end-to-end encryption.
-
-### 🛡️ ZTNA Gateway (Linux Data Plane)
-- **Remote Software Update Manager**: Live update lifecycle (`idle` ➔ `downloading` ➔ `updating` ➔ `updated`) with remote update triggers from Console.
-- **High-Availability (HA) Clustering**: Active/Standby multi-node clustering with sub-second health checks and failover.
-- **Automated Let's Encrypt TLS**: Automated certificate issuance and ACME DNS challenge validation for Web Proxy internal domains.
-- **Token-Based Zero-Touch Enrollment**: Fast node provisioning with rotating tokens and hardware fingerprint verification.
+### 🔒 Security Hardening & Platform Remediations
+- **Gateway Enrollment Token & Takeover Protection**: New gateways now require a cryptographically random `enrollment_token` upon initial registration, preventing unauthorized edge node registrations.
+- **Split DNS Security Hardening**: Strict RFC domain syntax validation and path traversal defenses across macOS, Linux (`/etc/resolver/`), and Windows PowerShell NRPT rules.
+- **Client Privilege Hardening**: Eliminated SUID root privileges on GUI binaries on macOS in favor of least-privilege scoped helper execution.
+- **Web Proxy & Clientless ZTNA Isolation**: Injected `Referrer-Policy: same-origin`, `X-Content-Type-Options: nosniff`, and `X-Frame-Options: SAMEORIGIN` headers alongside session cookie isolation.
+- **Web SSH & RDP Stored XSS Mitigation**: Fully HTML-escaped dynamic application names and destination hostnames across browser-based terminal and remote desktop sessions.
+- **IP Spoofing Protection**: Enforced trusted reverse proxy subnet validation before accepting `X-Forwarded-For` and `X-Real-IP` headers.
+- **OAuth CSRF State Verification**: Enforced strict cross-site request forgery cookie checks across Single Sign-On and IdP callback endpoints.
+- **Redis Session Indexing**: Upgraded Web Access session management to indexed user sets for $O(1)$ lookup performance and DoS protection.
+- **Dynamic Version Synchronizer**: Real-time multi-path `versions.json` dynamic reloading across management APIs and control planes.
 
 ---
 
@@ -46,7 +31,7 @@ All binaries and desktop installers are automatically compiled and published to 
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
 | **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | High-performance wire-speed data plane daemon with encrypted TUN routing for on-premise/VPC gateways. |
-| **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.1` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
+| **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.3` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
 
 ---
 
@@ -54,16 +39,16 @@ All binaries and desktop installers are automatically compiled and published to 
 
 | Component | Version | Build Status |
 | :--- | :--- | :--- |
-| **Management API** | `v1.7.1` | ✅ Stable |
-| **Authentication API** | `v1.7.1` | ✅ Stable |
-| **Gateway Control Plane** | `v1.7.1` | ✅ Stable |
-| **Edge Gateway Data Plane** | `v1.7.1` | ✅ Stable |
-| **Console** | `v1.7.1` | ✅ Stable |
-| **Backoffice** | `v1.7.1` | ✅ Stable |
-| **Web Catalog** | `v1.7.1` | ✅ Stable |
-| **Landing Page** | `v1.7.1` | ✅ Stable |
-| **ZTNA CLI** | `v1.7.1` | ✅ Stable |
-| **ZTNA Desktop Client** | `v1.7.1` | ✅ Stable |
+| **Management API** | `v1.7.3` | ✅ Stable |
+| **Authentication API** | `v1.7.3` | ✅ Stable |
+| **Gateway Control Plane** | `v1.7.3` | ✅ Stable |
+| **Edge Gateway Data Plane** | `v1.7.3` | ✅ Stable |
+| **Console** | `v1.7.3` | ✅ Stable |
+| **Backoffice** | `v1.7.3` | ✅ Stable |
+| **Web Catalog** | `v1.7.3` | ✅ Stable |
+| **Landing Page** | `v1.7.3` | ✅ Stable |
+| **ZTNA CLI** | `v1.7.3` | ✅ Stable |
+| **ZTNA Desktop Client** | `v1.7.3` | ✅ Stable |
 
 ---
 
