@@ -21,7 +21,6 @@ All binaries, container images, and desktop installers are automatically compile
 | Component | Target Platform | Filename | Format | Description |
 |---|---|---|---|---|
 | **macOS Desktop Client** | macOS Universal (Apple Silicon & Intel) | `Tridorian-ZTNA.dmg` | Apple Disk Image (`.dmg`) | Official Wails GUI desktop client with drag-and-drop `/Applications` installer. |
-| **macOS Desktop Client** | macOS Universal (Enterprise / MDM) | `Tridorian-ZTNA.pkg` | Installer Package (`.pkg`) | Enterprise installer package with automated postinstall routing setup for MDM fleets. |
 | **Windows Desktop Client** | Windows `amd64` (x64) | `ztna-client-windows-amd64-installer.exe` | NSIS Executable Installer | GUI client with bundled Wintun TUN drivers and automatic UAC elevation. |
 | **Windows Desktop Client** | Windows `arm64` (Snapdragon) | `ztna-client-windows-arm64-installer.exe` | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM. |
 | **Linux Desktop Client** | Linux `amd64` (Debian/Ubuntu) | `ztna-client_1.7.5_amd64.deb` | Debian Package (`.deb`) | GUI and system daemon desktop client package for Linux distributions. |
