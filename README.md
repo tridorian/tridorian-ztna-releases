@@ -4,34 +4,114 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
-## 🚀 What's New in v1.7.3
+## 🚀 What's New in v1.7.5
 
-### 🔒 Security Hardening & Platform Remediations
-- **Gateway Enrollment Token & Takeover Protection**: New gateways now require a cryptographically random `enrollment_token` upon initial registration, preventing unauthorized edge node registrations.
-- **Split DNS Security Hardening**: Strict RFC domain syntax validation and path traversal defenses across macOS, Linux (`/etc/resolver/`), and Windows PowerShell NRPT rules.
-- **Client Privilege Hardening**: Eliminated SUID root privileges on GUI binaries on macOS in favor of least-privilege scoped helper execution.
-- **Web Proxy & Clientless ZTNA Isolation**: Injected `Referrer-Policy: same-origin`, `X-Content-Type-Options: nosniff`, and `X-Frame-Options: SAMEORIGIN` headers alongside session cookie isolation.
-- **Web SSH & RDP Stored XSS Mitigation**: Fully HTML-escaped dynamic application names and destination hostnames across browser-based terminal and remote desktop sessions.
-- **IP Spoofing Protection**: Enforced trusted reverse proxy subnet validation before accepting `X-Forwarded-For` and `X-Real-IP` headers.
-- **OAuth CSRF State Verification**: Enforced strict cross-site request forgery cookie checks across Single Sign-On and IdP callback endpoints.
-- **Redis Session Indexing**: Upgraded Web Access session management to indexed user sets for $O(1)$ lookup performance and DoS protection.
-- **Dynamic Version Synchronizer**: Real-time multi-path `versions.json` dynamic reloading across management APIs and control planes.
+### 🌟 Release Overview
+- **Enhanced Desktop Client Experience**: Seamless startup and connection across macOS and Windows, with native authorization and full support for standard (non-admin) user accounts.
+- **Smart Connection & Posture Policies**: Improved reconnection intelligence and flexible, policy-driven device posture checks.
+- **Web Access & Automated TLS**: Streamlined browser-based clientless access with automated Let's Encrypt certificate management across all gateway tiers.
+- **Performance & Reliability**: Core routing optimizations, faster session handshakes, and enhanced multi-platform stability.
 
 ---
 
 ## 📦 Release Artifacts Matrix
 
-All binaries and desktop installers are automatically compiled and published to [GitHub Releases](https://github.com/tridorian/tridorian-ztna-releases/releases):
+All binaries, container images, and desktop installers are automatically compiled and published to [GitHub Releases](https://github.com/tridorian/tridorian-ztna-releases/releases):
 
 | Component | Target Platform | Filename | Format | Description |
 |---|---|---|---|---|
-| **macOS Desktop Client** | macOS Universal (Apple Silicon & Intel) | `Tridorian-ZTNA.dmg` | Apple Disk Image (`.dmg`) | Official Wails GUI desktop client with drag-to-Applications installer layout and self-elevation. |
-| **Windows Desktop Client** | Windows `amd64` (x64) | `ztna-client-windows-amd64-installer.exe` | NSIS Executable Installer | GUI client with bundled Wintun 0.14.1 TUN drivers and desktop/start menu shortcuts. |
-| **Windows Desktop Client** | Windows `arm64` (Snapdragon) | `ztna-client-windows-arm64-installer.exe` | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM devices. |
+| **macOS Desktop Client** | macOS Universal (Apple Silicon & Intel) | `Tridorian-ZTNA.dmg` | Apple Disk Image (`.dmg`) | Official Wails GUI desktop client with drag-and-drop `/Applications` installer. |
+| **macOS Desktop Client** | macOS Universal (Enterprise / MDM) | `Tridorian-ZTNA.pkg` | Installer Package (`.pkg`) | Enterprise installer package with automated postinstall routing setup for MDM fleets. |
+| **Windows Desktop Client** | Windows `amd64` (x64) | `ztna-client-windows-amd64-installer.exe` | NSIS Executable Installer | GUI client with bundled Wintun TUN drivers and automatic UAC elevation. |
+| **Windows Desktop Client** | Windows `arm64` (Snapdragon) | `ztna-client-windows-arm64-installer.exe` | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM. |
+| **Linux Desktop Client** | Linux `amd64` (Debian/Ubuntu) | `ztna-client_1.7.5_amd64.deb` | Debian Package (`.deb`) | GUI and system daemon desktop client package for Linux distributions. |
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
-| **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | High-performance wire-speed data plane daemon with encrypted TUN routing for on-premise/VPC gateways. |
-| **ZTNA Gateway Container** | Linux (Multi-Arch) | `gateway:v1.7.3` | OCI Container Image | Containerized gateway deployment for Kubernetes, Docker, and edge appliances. |
+| **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | Wire-speed data plane daemon with encrypted TUN routing for VPC / on-premise edge nodes. |
+| **ZTNA Gateway Container** | Linux Multi-Arch | `tridorian/gateway:v1.7.5` | OCI Container Image | Containerized edge gateway for Kubernetes, Docker, and edge appliances. |
+
+---
+
+## 🚀 Quick Start Guide
+
+### 1. Workstation Desktop Client
+* **macOS**: Download `Tridorian-ZTNA.dmg`, drag to `/Applications`, launch the app, enter your organization domain (e.g. `company.triztna.com`), and authenticate via Corporate SSO.
+* **Windows**: Download and launch `ztna-client-windows-amd64-installer.exe` with administrator confirmation, enter your domain, and connect.
+
+### 2. Command-Line Interface (`ztna-cli`)
+```bash
+# Interactive Single Sign-On and connection
+sudo ztna-cli connect --domain company.triztna.com
+
+# Direct Gateway connection
+sudo ztna-cli connect --domain company.triztna.com --gateway <GATEWAY_UUID>
+
+# Run in background as persistent daemon
+sudo ztna-cli connect --domain company.triztna.com --daemon
+
+# Headless server / CI/CD pipeline using pre-issued JWT token
+sudo ztna-cli connect --domain company.triztna.com --token <JWT_TOKEN>
+
+# Disconnect
+sudo ztna-cli stop
+```
+
+### 3. Edge Gateway Node Deployment
+```bash
+# Run binary directly
+sudo ./ztna-gateway --node-id <NODE_ID> --control-plane gateway.triztna.com:5443 --enrollment-token <ENROLLMENT_TOKEN>
+
+# Install as persistent Linux systemd service (Auto-start on boot)
+sudo ./ztna-gateway --install-service --node-id <NODE_ID> --control-plane gateway.triztna.com:5443 --enrollment-token <ENROLLMENT_TOKEN>
+
+# Deploy via Docker container
+docker run -d --name tridorian-gateway --restart=always --privileged --net=host \
+  -e NODE_ID=<NODE_ID> \
+  -e CONTROL_PLANE=gateway.triztna.com:5443 \
+  -e ENROLLMENT_TOKEN=<ENROLLMENT_TOKEN> \
+  tridorian/gateway:latest
+```
+
+#### Docker Compose Example (`docker-compose.yml`)
+```yaml
+version: '3.8'
+services:
+  ztna-gateway:
+    image: tridorian/gateway:v1.7.5
+    container_name: tridorian-gateway
+    restart: always
+    network_mode: host
+    privileged: true
+    environment:
+      - NODE_ID=your-gateway-node-uuid
+      - CONTROL_PLANE=gateway.triztna.com:5443
+      - ENROLLMENT_TOKEN=your-gateway-enrollment-token
+```
+
+---
+
+## 💻 System Requirements
+
+| Platform | Minimum Supported Version | Hardware Architectures | Privileges |
+|---|---|---|---|
+| **macOS** | macOS Monterey (12.0+) or newer | Apple Silicon (M1/M2/M3/M4) & Intel (x86_64) | Standard User (One-time Touch ID / Admin approval for routing) |
+| **Windows** | Windows 10 (19041+) / Windows 11 | x64 (AMD64) & ARM64 (Snapdragon X Elite/Plus) | Administrator (Automatic UAC Prompt on launch) |
+| **Linux Client** | Kernel 5.4+ (systemd) | x86_64, ARM64 (glibc 2.31+ / musl) | `sudo` for virtual `utun` / TUN creation & routing |
+| **Edge Gateway** | Linux Kernel 5.4+ | x86_64, ARM64 | Root / `CAP_NET_ADMIN` in container |
+
+---
+
+## 🔒 Security & Verification
+
+All official release artifacts are signed and published with cryptographic SHA-256 checksums in `checksums.txt`:
+
+```bash
+# Verify checksum on Linux / macOS
+sha256sum -c checksums.txt
+
+# Verify checksum on Windows PowerShell
+Get-FileHash .\ztna-client-windows-amd64-installer.exe -Algorithm SHA256
+```
 
 ---
 
@@ -39,16 +119,16 @@ All binaries and desktop installers are automatically compiled and published to 
 
 | Component | Version | Build Status |
 | :--- | :--- | :--- |
-| **Management API** | `v1.7.3` | ✅ Stable |
-| **Authentication API** | `v1.7.3` | ✅ Stable |
-| **Gateway Control Plane** | `v1.7.3` | ✅ Stable |
-| **Edge Gateway Data Plane** | `v1.7.3` | ✅ Stable |
-| **Console** | `v1.7.3` | ✅ Stable |
-| **Backoffice** | `v1.7.3` | ✅ Stable |
-| **Web Catalog** | `v1.7.3` | ✅ Stable |
-| **Landing Page** | `v1.7.3` | ✅ Stable |
-| **ZTNA CLI** | `v1.7.3` | ✅ Stable |
-| **ZTNA Desktop Client** | `v1.7.3` | ✅ Stable |
+| **Management API** | `v1.7.5` | ✅ Stable |
+| **Authentication API** | `v1.7.5` | ✅ Stable |
+| **Gateway Control Plane** | `v1.7.5` | ✅ Stable |
+| **Edge Gateway Data Plane** | `v1.7.5` | ✅ Stable |
+| **Console** | `v1.7.5` | ✅ Stable |
+| **Backoffice** | `v1.7.5` | ✅ Stable |
+| **Web Catalog** | `v1.7.5` | ✅ Stable |
+| **Landing Page** | `v1.7.5` | ✅ Stable |
+| **ZTNA CLI** | `v1.7.5` | ✅ Stable |
+| **ZTNA Desktop Client** | `v1.7.5` | ✅ Stable |
 
 ---
 
