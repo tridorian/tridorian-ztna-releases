@@ -4,6 +4,19 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.7.7-patch.7
+
+### 🌟 Release Overview
+
+- **New Features**:
+  - **Console**: Added 4-step interactive guide with 1-click copy buttons and troubleshooting instructions for Let's Encrypt ACME DNS-01 challenge.
+- **Bug Fixes**:
+  - **ZTNA Desktop Client**: Fixed false posture quarantine on Windows/macOS and ensured proper Session Terminated (Kicked) notification.
+  - **Web Access & Console**: Fixed idle web sessions remaining stuck on Console by syncing TTL with tenant idle timeout and auto-purging inactive sessions.
+  - **Backend & Ingress**: Fixed posture heartbeat routing to Auth API and added reverse proxy fallback in Management API.
+
+---
+
 ## 🚀 What's New in v1.7.7-patch.5
 
 ### 🌟 Release Overview
