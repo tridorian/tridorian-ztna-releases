@@ -4,6 +4,14 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.7.7-patch.4
+
+### 🌟 Release Overview
+
+- **Bug Fixes**: Bug fixes for Gateway Control Plane, Edge Gateway.
+
+---
+
 ## 🚀 What's New in v1.7.7-patch.3
 
 ### 🌟 Release Overview
