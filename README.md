@@ -4,13 +4,10 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
-## 🚀 What's New in v1.7.5
+## 🚀 What's New in v1.7.7
 
 ### 🌟 Release Overview
-- **Enhanced Desktop Client Experience**: Seamless startup and connection across macOS and Windows, with native authorization and full support for standard (non-admin) user accounts.
-- **Smart Connection & Posture Policies**: Improved reconnection intelligence and flexible, policy-driven device posture checks.
-- **Web Access & Automated TLS**: Streamlined browser-based clientless access with automated Let's Encrypt certificate management across all gateway tiers.
-- **Performance & Reliability**: Core routing optimizations, faster session handshakes, and enhanced multi-platform stability.
+- **Bug Fixes & General Improvements**: General bug fixes, stability enhancements, and performance improvements across the platform components.
 
 ---
 
@@ -23,11 +20,11 @@ All binaries, container images, and desktop installers are automatically compile
 | **macOS Desktop Client** | macOS Universal (Apple Silicon & Intel) | `Tridorian-ZTNA.dmg` | Apple Disk Image (`.dmg`) | Official Wails GUI desktop client with drag-and-drop `/Applications` installer. |
 | **Windows Desktop Client** | Windows `amd64` (x64) | `ztna-client-windows-amd64-installer.exe` | NSIS Executable Installer | GUI client with bundled Wintun TUN drivers and automatic UAC elevation. |
 | **Windows Desktop Client** | Windows `arm64` (Snapdragon) | `ztna-client-windows-arm64-installer.exe` | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM. |
-| **Linux Desktop Client** | Linux `amd64` (Debian/Ubuntu) | `ztna-client_1.7.5_amd64.deb` | Debian Package (`.deb`) | GUI and system daemon desktop client package for Linux distributions. |
+| **Linux Desktop Client** | Linux `amd64` (Debian/Ubuntu) | `ztna-client_1.7.7_amd64.deb` | Debian Package (`.deb`) | GUI and system daemon desktop client package for Linux distributions. |
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
 | **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | Wire-speed data plane daemon with encrypted TUN routing for VPC / on-premise edge nodes. |
-| **ZTNA Gateway Container** | Linux Multi-Arch | `tridorian/gateway:v1.7.5` | OCI Container Image | Containerized edge gateway for Kubernetes, Docker, and edge appliances. |
+| **ZTNA Gateway Container** | Linux Multi-Arch | `tridorian/gateway:v1.7.7` | OCI Container Image | Containerized edge gateway for Kubernetes, Docker, and edge appliances. |
 
 ---
 
@@ -76,7 +73,7 @@ docker run -d --name tridorian-gateway --restart=always --privileged --net=host 
 version: '3.8'
 services:
   ztna-gateway:
-    image: tridorian/gateway:v1.7.5
+    image: tridorian/gateway:v1.7.7
     container_name: tridorian-gateway
     restart: always
     network_mode: host
@@ -118,16 +115,16 @@ Get-FileHash .\ztna-client-windows-amd64-installer.exe -Algorithm SHA256
 
 | Component | Version | Build Status |
 | :--- | :--- | :--- |
-| **Management API** | `v1.7.5` | ✅ Stable |
-| **Authentication API** | `v1.7.5` | ✅ Stable |
-| **Gateway Control Plane** | `v1.7.5` | ✅ Stable |
-| **Edge Gateway Data Plane** | `v1.7.5` | ✅ Stable |
-| **Console** | `v1.7.5` | ✅ Stable |
-| **Backoffice** | `v1.7.5` | ✅ Stable |
-| **Web Catalog** | `v1.7.5` | ✅ Stable |
-| **Landing Page** | `v1.7.5` | ✅ Stable |
-| **ZTNA CLI** | `v1.7.5` | ✅ Stable |
-| **ZTNA Desktop Client** | `v1.7.5` | ✅ Stable |
+| **Management API** | `v1.7.7` | ✅ Stable |
+| **Authentication API** | `v1.7.7` | ✅ Stable |
+| **Gateway Control Plane** | `v1.7.7` | ✅ Stable |
+| **Edge Gateway Data Plane** | `v1.7.7` | ✅ Stable |
+| **Console** | `v1.7.7` | ✅ Stable |
+| **Backoffice** | `v1.7.7` | ✅ Stable |
+| **Web Catalog** | `v1.7.7` | ✅ Stable |
+| **Landing Page** | `v1.7.7` | ✅ Stable |
+| **ZTNA CLI** | `v1.7.7` | ✅ Stable |
+| **ZTNA Desktop Client** | `v1.7.7` | ✅ Stable |
 
 ---
 
