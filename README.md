@@ -4,6 +4,13 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.7.7-patch.2
+
+### 🌟 Release Overview
+- **Bug Fixes**: Bug fixes for Management API, Gateway Control Plane, Edge Gateway, and Authentication API.
+
+---
+
 ## 🚀 What's New in v1.7.7
 
 ### 🌟 Release Overview
@@ -24,7 +31,7 @@ All binaries, container images, and desktop installers are automatically compile
 | **ZTNA CLI** | Linux `amd64` / `arm64` | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64` | Standalone Executable | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI** | macOS `amd64` / `arm64` | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable | Lightweight CLI client for macOS terminal power-users. |
 | **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64` | `gateway-linux-amd64`<br>`gateway-linux-arm64` | Standalone Executable | Wire-speed data plane daemon with encrypted TUN routing for VPC / on-premise edge nodes. |
-| **ZTNA Gateway Container** | Linux Multi-Arch | `tridorian/gateway:v1.7.7` | OCI Container Image | Containerized edge gateway for Kubernetes, Docker, and edge appliances. |
+| **ZTNA Gateway Container** | Linux Multi-Arch | `tridorian/gateway:v1.7.7-patch.2` | OCI Container Image | Containerized edge gateway for Kubernetes, Docker, and edge appliances. |
 
 ---
 
@@ -73,7 +80,7 @@ docker run -d --name tridorian-gateway --restart=always --privileged --net=host 
 version: '3.8'
 services:
   ztna-gateway:
-    image: tridorian/gateway:v1.7.7
+    image: tridorian/gateway:v1.7.7-patch.2
     container_name: tridorian-gateway
     restart: always
     network_mode: host
@@ -115,10 +122,10 @@ Get-FileHash .\ztna-client-windows-amd64-installer.exe -Algorithm SHA256
 
 | Component | Version | Build Status |
 | :--- | :--- | :--- |
-| **Management API** | `v1.7.7` | ✅ Stable |
-| **Authentication API** | `v1.7.7` | ✅ Stable |
-| **Gateway Control Plane** | `v1.7.7` | ✅ Stable |
-| **Edge Gateway Data Plane** | `v1.7.7` | ✅ Stable |
+| **Management API** | `v1.7.7-patch.2` | ✅ Stable |
+| **Authentication API** | `v1.7.7-patch.2` | ✅ Stable |
+| **Gateway Control Plane** | `v1.7.7-patch.2` | ✅ Stable |
+| **Edge Gateway Data Plane** | `v1.7.7-patch.2` | ✅ Stable |
 | **Console** | `v1.7.7` | ✅ Stable |
 | **Backoffice** | `v1.7.7` | ✅ Stable |
 | **Web Catalog** | `v1.7.7` | ✅ Stable |
