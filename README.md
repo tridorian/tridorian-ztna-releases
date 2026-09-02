@@ -4,6 +4,18 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.7.7-patch.5
+
+### 🌟 Release Overview
+
+- **New Features**: Added responsive mobile navigation drawer and bottom navigation bar for Web Access.
+- **Bug Fixes**:
+  - **Management API**: Fixed Gateway version compatibility check for Web Proxy and Let's Encrypt support.
+  - **ZTNA Desktop Client**: Fixed session kick notification and posture alert consistency on Windows and macOS.
+  - **Gateway & Web Proxy**: Fixed Clientless session synchronization with Console and idle timeout cleanup.
+
+---
+
 ## 🚀 What's New in v1.7.7-patch.4
 
 ### 🌟 Release Overview
