@@ -4,6 +4,34 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.8.0
+
+### 🌟 Release Overview
+
+- **ZTNA Desktop Client**:
+  - **Redesigned Connected UI**: Added a tactile 3D power switch with a breathing radiant aura, high-contrast white vector icon, and pulsing emerald security badge.
+  - **Two-Tier Layout**: Resolved IP text and copy button overflow by separating Assigned IP into its own full-width row with balanced Duration and Gateway columns.
+  - **Session Stability**: Improved device posture evaluation and accurate session termination (Kicked/Quarantined) alerts.
+- **ZTNA Gateway**:
+  - **Let's Encrypt Support (HTTP-01 & DNS-01)**: Added automated ACME HTTP-01 challenge support via TCP port 80 alongside DNS-01 TXT record validation for seamless public SSL certificate issuance.
+  - **Process Lifecycle Management**: Improved tunnel worker process termination to prevent orphaned processes upon disconnect.
+  - **Node Status & Session Cleanup**: Enhanced real-time online/offline status detection and automated inactive session cleanup.
+  - **Container Image**: Published updated multi-arch image `tridorian/gateway:v1.8.0`.
+
+---
+
+## 🚀 What's New in v1.7.7-patch.8
+
+### 🌟 Release Overview
+
+- **New Features**:
+  - **Console**: Enhanced GatewayDetailView with automated Let's Encrypt DNS-01 challenge verification, 1-click copy buttons, and certificate issuance status tracking.
+- **Bug Fixes**:
+  - **Management API**: Added `isNodeOnlineByID` check for gateway status consistency and improved fallback session cleanup logic.
+  - **Gateway Control Plane**: Enhanced error handling during tunnel worker termination to prevent orphaned processes.
+
+---
+
 ## 🚀 What's New in v1.7.7-patch.7
 
 ### 🌟 Release Overview
@@ -70,11 +98,11 @@ All binaries, container images, and desktop installers are automatically compile
 | **macOS Desktop Client**    | macOS Universal (Apple Silicon & Intel) | `Tridorian-ZTNA.dmg`                               | Apple Disk Image (`.dmg`) | Official Wails GUI desktop client with drag-and-drop `/Applications` installer.           |
 | **Windows Desktop Client**  | Windows `amd64` (x64)                   | `ztna-client-windows-amd64-installer.exe`          | NSIS Executable Installer | GUI client with bundled Wintun TUN drivers and automatic UAC elevation.                   |
 | **Windows Desktop Client**  | Windows `arm64` (Snapdragon)            | `ztna-client-windows-arm64-installer.exe`          | NSIS Executable Installer | Native ARM64 GUI client with ARM64 Wintun drivers for Windows on ARM.                     |
-| **Linux Desktop Client**    | Linux `amd64` (Debian/Ubuntu)           | `ztna-client_1.7.7_amd64.deb`                      | Debian Package (`.deb`)   | GUI and system daemon desktop client package for Linux distributions.                     |
+| **Linux Desktop Client**    | Linux `amd64` (Debian/Ubuntu)           | `ztna-client_1.8.0_amd64.deb`                      | Debian Package (`.deb`)   | GUI and system daemon desktop client package for Linux distributions.                     |
 | **ZTNA CLI**                | Linux `amd64` / `arm64`                 | `ztna-cli-linux-amd64`<br>`ztna-cli-linux-arm64`   | Standalone Executable     | Headless command-line client for Linux servers, containers, CI/CD pipelines, and scripts. |
 | **ZTNA CLI**                | macOS `amd64` / `arm64`                 | `ztna-cli-darwin-amd64`<br>`ztna-cli-darwin-arm64` | Standalone Executable     | Lightweight CLI client for macOS terminal power-users.                                    |
 | **ZTNA Gateway Data Plane** | Linux `amd64` / `arm64`                 | `gateway-linux-amd64`<br>`gateway-linux-arm64`     | Standalone Executable     | Wire-speed data plane daemon with encrypted TUN routing for VPC / on-premise edge nodes.  |
-| **ZTNA Gateway Container**  | Linux Multi-Arch                        | `tridorian/gateway:v1.7.7-patch.2`                 | OCI Container Image       | Containerized edge gateway for Kubernetes, Docker, and edge appliances.                   |
+| **ZTNA Gateway Container**  | Linux Multi-Arch                        | `tridorian/gateway:v1.8.0`                         | OCI Container Image       | Containerized edge gateway for Kubernetes, Docker, and edge appliances.                   |
 
 ---
 
@@ -127,7 +155,7 @@ docker run -d --name tridorian-gateway --restart=always --privileged --net=host 
 version: "3.8"
 services:
   ztna-gateway:
-    image: tridorian/gateway:v1.7.7-patch.2
+    image: tridorian/gateway:v1.8.0
     container_name: tridorian-gateway
     restart: always
     network_mode: host
@@ -167,18 +195,18 @@ Get-FileHash .\ztna-client-windows-amd64-installer.exe -Algorithm SHA256
 
 ## 📊 Component Version Matrix
 
-| Component                   | Version          | Build Status |
-| :-------------------------- | :--------------- | :----------- |
-| **Management API**          | `v1.7.7-patch.2` | ✅ Stable    |
-| **Authentication API**      | `v1.7.7-patch.2` | ✅ Stable    |
-| **Gateway Control Plane**   | `v1.7.7-patch.2` | ✅ Stable    |
-| **Edge Gateway Data Plane** | `v1.7.7-patch.2` | ✅ Stable    |
-| **Console**                 | `v1.7.7`         | ✅ Stable    |
-| **Backoffice**              | `v1.7.7`         | ✅ Stable    |
-| **Web Catalog**             | `v1.7.7`         | ✅ Stable    |
-| **Landing Page**            | `v1.7.7`         | ✅ Stable    |
-| **ZTNA CLI**                | `v1.7.7`         | ✅ Stable    |
-| **ZTNA Desktop Client**     | `v1.7.7`         | ✅ Stable    |
+| Component                   | Version  | Build Status |
+| :-------------------------- | :------- | :----------- |
+| **Management API**          | `v1.8.0` | ✅ Stable    |
+| **Authentication API**      | `v1.8.0` | ✅ Stable    |
+| **Gateway Control Plane**   | `v1.8.0` | ✅ Stable    |
+| **Edge Gateway Data Plane** | `v1.8.0` | ✅ Stable    |
+| **Console**                 | `v1.8.0` | ✅ Stable    |
+| **Backoffice**              | `v1.8.0` | ✅ Stable    |
+| **Web Catalog**             | `v1.8.0` | ✅ Stable    |
+| **Landing Page**            | `v1.8.0` | ✅ Stable    |
+| **ZTNA CLI**                | `v1.8.0` | ✅ Stable    |
+| **ZTNA Desktop Client**     | `v1.8.0` | ✅ Stable    |
 
 ---
 
