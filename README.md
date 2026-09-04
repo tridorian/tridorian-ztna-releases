@@ -4,6 +4,15 @@ Welcome to the official release repository for **Tridorian ZTNA (Zero Trust Netw
 
 ---
 
+## 🚀 What's New in v1.8.0-patch.1
+
+### 🌟 Release Overview
+
+- **ZTNA Gateway**:
+  - **Performance Enhancements**: Enhance gateway performance and throughput optimization.
+
+---
+
 ## 🚀 What's New in v1.8.0
 
 ### 🌟 Release Overview
